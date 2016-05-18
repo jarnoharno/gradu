@@ -1,0 +1,152 @@
+% --- Template for thesis / report with tktltiki2 class ---
+%
+% last updated 2013/02/15 for tkltiki2 v1.02
+
+\documentclass[english]{tktltiki2}
+
+% tktltiki2 automatically loads babel, so you can simply
+% give the language parameter (e.g. finnish, swedish, english, british) as
+% a parameter for the class: \documentclass[finnish]{tktltiki2}.
+% The information on title and abstract is generated automatically depending on
+% the language, see below if you need to change any of these manually.
+%
+% Class options:
+% - grading                 -- Print labels for grading information on the
+%   front page.
+% - disablelastpagecounter  -- Disables the automatic generation of page number
+%   information in the abstract. See also \numberofpagesinformation{} command
+%   below.
+%
+% The class also respects the following options of article class: 10pt, 11pt,
+% 12pt, final, draft, oneside, twoside, openright, openany, onecolumn,
+% twocolumn, leqno, fleqn
+%
+% The default font size is 11pt. The paper size used is A4, other sizes are not
+% supported.
+%
+% rubber: module pdftex
+
+% --- General packages ---
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsfonts,amsmath,amssymb,amsthm,booktabs,color,enumitem,graphicx}
+\usepackage{bm}
+\usepackage[pdftex,hidelinks]{hyperref}
+
+% Automatically set the PDF metadata fields
+\makeatletter
+\AtBeginDocument{\hypersetup{pdftitle = {\@title}, pdfauthor = {\@author}}}
+\makeatother
+
+% --- Language-related settings ---
+%
+% these should be modified according to your language
+
+% babelbib for non-english bibliography using bibtex
+\usepackage[fixlanguage]{babelbib}
+
+% add bibliography to the table of contents
+%\usepackage[nottoc]{tocbibind}
+
+% --- Theorem environment definitions ---
+
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[thm]{Definition}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+
+% --- tktltiki2 options ---
+%
+% The following commands define the information used to generate title and
+% abstract pages. The following entries should be always specified:
+
+\title{Psychological Sensing on Mobile Devices}
+\author{Jarno Leppänen}
+\date{\today}
+\level{M.Sc. Thesis}
+\abstract{Abstract.}
+
+% The following can be used to specify keywords and classification of the paper:
+
+\keywords{keyword 1, keyword 2, keyword 3}
+
+% classification according to ACM Computing Classification System
+% (http://www.acm.org/about/class/) This is probably mostly relevant for
+% computer scientists uncomment the following; contents of \classification will
+% be printed under the abstract with a title "ACM Computing Classification
+% System (CCS):" \classification{}
+
+% If the automatic page number counting is not working as desired in your case,
+% uncomment the following to manually set the number of pages displayed in the
+% abstract page:
+%
+% \numberofpagesinformation{16 pages + 10 appendix pages}
+%
+% If you are not a computer scientist, you will want to uncomment the following
+% by hand and specify your department, faculty and subject by hand:
+%
+% \faculty{Faculty of Science} \department{Department of Computer Science}
+% \subject{Computer Science}
+%
+% If you are not from the University of Helsinki, then you will most likely
+% want to set these also:
+%
+% \university{University of Helsinki} \universitylong{HELSINGIN YLIOPISTO ---
+% HELSINGFORS UNIVERSITET --- UNIVERSITY OF HELSINKI} % displayed on the top of
+% the abstract page \city{Helsinki}
+%
+
+
+\begin{document}
+
+% --- Front matter ---
+
+\frontmatter      % roman page numbering for front matter
+
+\maketitle        % title page
+%\makeabstract     % abstract page
+
+\tableofcontents  % table of contents
+
+% --- Main matter ---
+
+\mainmatter       % clear page, start arabic page numbering
+
+\input{body.tex}
+
+% --- References ---
+%
+% bibtex is used to generate the bibliography. The babplain style
+% will generate numeric references (e.g. [1]) appropriate for theoretical
+% computer science. If you need alphanumeric references (e.g [Tur90]), use
+%
+% \bibliographystyle{babalpha-lf}
+%
+% instead.
+
+\section{References}
+%\renewcommand{\section}[2]{}%
+\nocite{*}
+\selectbiblanguage{english}
+\bibliographystyle{babplain-lf}
+\bibliography{gradu}
+
+% --- Appendices ---
+
+% uncomment the following
+
+% \newpage
+% \appendix
+%
+% \section{Example appendix}
+
+\end{document}

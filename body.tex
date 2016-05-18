@@ -1,0 +1,273 @@
+\section{Introduction}
+
+Modern smartphones have evolved from being mere communications devices into
+powerful computing devices that can gather and analyze information about the
+user and the current context in (near) real-time. Recent studies have broadened
+the scope even further by estimating various psychological factors such
+as stress and mood with sensors on a regular mobile phone
+\cite{lu12stresssense} \cite{likamwa13moodscope}. This trend is expanding
+the discipline of psychophysiology and affective computing
+\cite{picard95affective}
+to ubiquitous
+wearable devices and smartphones.
+
+\textit{Psychological sensing} refers to techniques for identifying
+psychological states from sensor data. Examples of psychological states that
+can be sensed include personality, mood, stress, anxiety, or tension.
+Traditionally investigations of psychological phenomena have been conducted
+using direct observations or clinical assessment, specialized wearable sensing
+platforms \cite{choudhury03sensing} \cite{olguin09capturing} or instrumented
+rooms with high-quality equipment \cite{pianesi08multimodal}. Transferring
+these techniques to mobile devices, however, is far from straight-forward.
+
+\section{Related Work}
+
+\subsection{Psychological inference}
+
+The existence of a relationship between various physiological measures and
+psychological processes has been recognized for a long time in
+psychophysiology. A very early application in this field is the polygraph,
+more commonly known as lie detector, that measures several physiological indices
+such as blood pressure, heart rate and skin conductivity while the
+subject is being interrogated. The idea is that deceptive answers
+would trigger a response in the measured indices that a human operator can
+distinguish reliably.
+
+While polygraphic lie detection has been a target of considerable criticism,
+it is empirically established that arousal and anxiety affect the
+physiological indices measured in polygraphy in a predictable manner.
+There are in fact a wide range of physiological responses in different
+human organ systems due to being innervated by the autonomic nervous system.
+More recently, psychophysiology has started also studying responses in
+central nervous system with the aid of advanced neuroimaging techniques such
+as functional magnetic resonance imaging (fMRI). Examples of these responses
+include various kinds of event-related potentials (ERP), brain waves and other
+cortical brain potentials.
+
+Some studies have utilized large number of these responses in mobile
+inference systems with custom-made complex sensing and inference devices.
+Plarre et al. \cite{plarre11continuous} used a custom-made multisensory mobile
+device called AutoSense \cite{ertin11autosense} to accurately sense stress
+levels by utilizing
+electrocardiography (ECG), respiratory inductive plethysmograph (RIP) and
+3-axis accelerometer among many other sensors and ground truth stress
+assessments by experts and self-reports.
+
+Psychologists have also shown the existence of a correlation between
+verbal behaviour and various personality types and mental states.
+For example, extraversion
+has been shown to be associated with higher and more varied pitch
+\cite{scherer78personality}.
+Other studies have explored the relationship between
+personality types and vocal characteristics even earlier
+\cite{addington68relationship}
+\cite{aronovitch76voice}.
+In fact, voice-based mental state inference is already established enough
+that it is being incorporated into
+developer-friendly libraries that make it possible to utilize complex
+voice inference even in low-performance embedded systems with relative ease.
+Chang et al. have described AMMON, a complete emotion recognition
+pipeline written in C that also has some support for detecting depression
+indicators
+\cite{chang11hows}.
+The system was evaluated against the SUSAS database (Speech Under Simulated
+and Actual Stress) \cite{hansen97getting} and achieved an accuracy of 84.43\%
+in recognizing stressed vs. neutral utterances. SUSAS includes annotated
+samples recorded in a controlled environment.
+
+Pianesi et al. used annotated audio and video recordings from a simulated
+multi-party meeting to infer participants' personality traits
+\cite{pianesi08multimodal}.
+The task was recorded in a controlled laboratory environment.
+Recordings were
+segmented into 1-minute-length windows and 22 acoustic features and a number
+of visual features were extracted. Each window was classified into one of two
+personality class, extraversion (one of the dimensions of Big Five) and locus
+of control. The study achieved a classification accuracy of 0.89 and 0.87
+for extraversion and locus of control respectively.
+
+\begin{itemize}
+  \item Emotion sensing with Deep Learning \cite{han14speech}.
+  \item Five emotions
+\end{itemize}
+
+\begin{itemize}
+  \item cStress by Hovsepian et al. \cite{hovsepian15cstress} tries to
+    establish a "gold standard" measure for stress based on electrocardiography
+    (ECG) and respiration from inductive plethysmography (RIP) measured with
+    AutoSense \cite{ertin11autosense}
+  \item The measure is actually a complex SVM classification model turned into
+    a probability model with Platt's scaling \cite{platt99probabilistic}
+\end{itemize}
+
+\subsection{Mobile applications}
+
+Mobile phone applications that employ psychological sensing and
+would be evaluated in the varied and heterogeneous conditions typical of such
+systems are still few.
+
+\subsubsection{Audio}
+
+StressSense is a real-time system running on off-the-shelf smartphones developed
+by Lu et al. that classifies speech segments
+into stressed and neutral classes using a gaussian mixture model and multiple
+acoustic features.
+\cite{lu12stresssense}
+Three different parameterizations were considered, a
+universal classifier that is trained for all users, a user-specific classifier
+and a hybrid model that starts with the universal model and gradually
+gets adjusted as more and more individual information is gathered about the
+user. The evaluation was done in multiple trials and under mixed acoustic
+environments both indoors and outdoors. The personalized model achieved an
+accuracy of 82.9\% for the indoor scenario and 77.9\% for the outdoor scenario.
+
+While sleep quality is not a psychological factor per se, it is found to have
+a major impact on general psychological well-being.
+Hao et al. presented iSleep, an unobtrusive voice-based sleep quality monitoring
+system using smartphones
+\cite{hao13isleep}.
+It classifies recorded voice frames into events like
+coughing, snoring and talking with a decision tree model and associates
+sequences of events to various metrics of sleep quality. The system was
+evaluated with real world data using actigraphy or movement-based sleep quality
+system as the ground truth. The system was found to be robust to different
+persons and environmental noises achieving 90\% accuracy for sleep-related
+event classification. However, the study also found continuous microphone sampling to
+be a major concern for energy consumption and suggests an adaptive sampling
+strategy whereby sample rate is increased only when a potentially important
+event is detected.
+
+\subsubsection{Application sensors}
+
+Application sensors refer to the use of phone and application usage data
+as input features in the inference application. Generally the results have shown
+this type of sensor data to provide only some information about
+psychological states, instead of being able to rely solely on application
+sensor information. A particularly interesting prospect is to use the
+relatively energy-efficient phone usage data as support for duty cycling
+more energy heavy physical sensors.
+
+Chittaranjan et al. investigated the relationship between rich phone usage data
+and self-reported Big-Five personality traits (extraversion, agreeableness,
+conscientiousness, emotional stability and openness to experiences
+\cite{chittaranjan11mining}
+\cite{chittaranjan11whos}. Phone usage
+data included anonymized logs of calls, SMS, Bluetooth scans, calling profiles
+and application usage. A simple statistical correlation and regression analysis
+found several aggregated features that reportedly could be predictive of
+the Big-Five personality traits.
+
+More recently, LiKamWa et al. built a mood sensing system that
+estimates a linear regression model between phone usage metrics and a
+self-reported mood
+\cite{likamwa13moodscope} \cite{likamwa11canyour}.
+Personalized, one-size-fits-all and hybrid models were evaluated with the
+personalized model achieving best accuracy (93\%).
+
+\subsubsection{Motion}
+
+Very few mobile applications have used motion or location data to infer
+psychological phenomena. One remarkable study conducted by Gruenerbl et al.
+used GPS- and motion sensor -based activity recognition to infer mental and
+manic episodes in bipolar patients to aid psychiatric diagnosis
+\cite{gruenerbl14using}. In a trial
+with 12 bipolar disorder patients over 12 weeks the system achieved mental state
+change detection precision and recall of 96\% and 94\% respectively and state
+recognition accuracy of 80\%. Ground truth was assessed over a certain
+time frame during the study by experienced clinical psychologists. The features
+used included the number of distinct locations visited, the number of hours
+outdoors, accelerometer average magnitudes and variances and spectral
+features among others.
+
+\subsubsection{Holistic}
+
+More holistic approaches that strive to fuse sensor data from multiple different
+sensor sources to measure psychological factors have also been developed.
+Emerging commercial wearable devices (activity monitors, sleep monitors etc.)
+that incorporate sensors more suited to psychophysiological measurements
+typically fuse movement, heart beat and even galvanic skin response to provide
+the user statistics about sleep quality, mood and other factors.
+
+Chen et al. presented a holistic non-intrusive method for sleep quality
+detection on off-the-shelf smartphones
+\cite{chen13unobtrusive}.
+Their "best effort sleep" model
+utilizes various user context measures (prolonged silence, darkness,
+motion stationarity) in addition
+to phone usage statistics (phone-lock duration, phone-charging, phone-off) as
+variables to a regression model that estimates sleep duration. The system
+was evaluated with a user study and was found to give acceptable accuracy
+when compared to more intrusive methods (sleep wristbands, on-head sensors).
+
+Muaremi et al. developed a highly complex system for evaluating a stress score
+based on PANAS (Positive and Negative Affect Schedule) questionnaires presented
+regularly to the user, multiple features measurable with
+smartphone sensors (acoustic features, physical activity measures) and also
+social interaction features measured from phone usage statistics
+\cite{muaremi13towards}.
+A logit
+regression model was fitted to these variables to estimate the stress score
+for which a self-assessed reference value was acquired through questionnaires.
+
+\subsection{Mobile devices in psychological research}
+
+A general off-the-shelf smartphone with its increasing ubiquity and advancing
+sensing features has been noted as being potentially revolutionary as a tool to
+conduct large-scale experiments in sociology~\cite{raento09smartphones} and
+psychology~\cite{miller12smartphone}. The vision is that custom data collecting
+applications with global reach could gather precise, objective, sustained and
+ecologically valid data with a much greater efficiency than what was possible
+previously, replacing paper-and-pencil surveys, phone surveys and many lab
+and field studies.
+
+Rachuri et al. presented EmotionSense, an application framework for conducting
+large-scale experiments in social pyschology experiments
+\cite{rachuri10emotionsense}.
+In essence, the system is a programmable pipeline consisting of sensor monitors,
+a knowledge base that stores facts inferred from the sensing data and an
+inference engine. The system is rather generic and can be tailored to
+support many kinds of data collection experiments.
+
+Smartphones have also been used to implement various ambulatory psychological
+monitoring methods such as the electronically activated recorder (EAR)
+\cite{mehl12naturalistic}. Also custom-made electronic devices sharing features
+with smartphones have been used to infer psychological data. Examples include
+AutoSense by Erin et al., a highly sophisticated custom-made electronic sensor
+suite collecting ECG, GSR, respiratory rate, temperature and accelerometer
+data and communicating with a smartphone via Bluetooth
+\cite{ertin11autosense}, and the Mobile Sensing Platform by Choudhury et al.,
+an activity recognition platform with rich sensing capabilities predating modern
+smartphones \cite{choudhury08msp}.
+
+\begin{itemize}
+  \item Deep neural network with a simplified prediction running
+    energy-efficiently on a smartphone
+    \cite{lane15deepear}
+  \item Comparison with EmotionSense \cite{rachuri10emotionsense},
+    StressSense \cite{lu12stresssense}, SpeakerSense
+    \cite{lu11speakersense} ja JigSaw (Ambient scene detection)
+    \cite{lu10jigsaw}. Claims to beat them all.
+  \item Emotion and stress sound data from the Emotional Prosody Speech and
+    Transcripts library \cite{??emotional}
+\end{itemize}
+
+\section{Methodology}
+
+\section{Evaluation}
+
+\begin{itemize}
+  \item StressSense \cite{lu12stresssense} used binary classification and
+    collected data with experiments that subjected participants to known
+    stressors.  Effects were "verified" with galvanic skin response (GSR)
+    measurements.
+  \item The two stressing situations were a job interview (indoors) and a
+    marketing job involving recruiting new participants to scientific studies
+    (outdoors). Also two neutral tasks were conducted, indoors and outdoors.
+\end{itemize}
+
+\begin{itemize}
+  \item cStress \cite{hovsepian15cstress} used a procedure adopted from
+    \cite{plarre11continuous} where subjects were exposed to three
+    stressors: public speaking, mental arithmetic in sitting and standing
+    positions and exposure to cold water :) A 30-rest was used as a baseline.
+\end{itemize}
